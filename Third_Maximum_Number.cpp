@@ -3,44 +3,45 @@
 #include<algorithm>
 using namespace std;
 
-int thirdMax(vector<int>& nums) 
-{
-        vector<int> temp ;
-        sort(nums.begin(),nums.end()) ;
-        int start = 0 ;
-        int end = nums.size() - 2 ;
-        while(start<=end)
+ int returnindex(int s , int no , vector<int>& nums)
         {
-            if(nums[start]!=nums[start+1])
+            int i = s ;
+            for( ; i < nums.size() ; i++)
             {
-                temp.push_back(nums[start]) ;
+                if(nums[i]!=no)
+                {
+                    return i;
+                }
             }
-            start++;
-        }
-
-        if(start==end+1)
-        {
             
-                temp.push_back(nums[start]) ;
-            
+            return i;
         }
-        
 
-        if(temp.size()==1)
+        int thirdMax(vector<int>& nums) {
+        int s = 0;
+        vector<int> r;
+        sort(nums.begin(),nums.end());
+        while(s<nums.size())
         {
-            return temp[0] ;
+             int idx = returnindex(s,nums[s],nums);
+             r.push_back(nums[s]);
+             s = idx;
         }
-        else if(temp.size()==2)
+        if(r.size()==1)
         {
-            return temp[1] ;
+            return r[0];
         }
+        else if(r.size()==2)
+        {
+            return r[1];
+        }
+         return r[r.size()-3];
+           
         
-            return temp[temp.size()-3] ;
-        
-}
-
+    }
 int main()
 {
-    vector<int> nums =  {3,2,1} ;
-    thirdMax(nums);
+    vector<int> a{3,2,1};
+    cout << thirdMax(a) <<  " ";
+   
 }
