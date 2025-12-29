@@ -45,5 +45,9 @@ void duplicateZeros(vector<int>& arr)
 int main()
 {
     vector<int> a{1,2,3};
-    duplicateZeros(a);   
+    duplicateZeros(a);  
+    for(auto v : a)
+    {
+        cout << v << " " ;
+    } 
 }
